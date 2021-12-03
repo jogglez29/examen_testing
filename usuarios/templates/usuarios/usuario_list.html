@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de usuarios</title>
+</head>
+<body>
+    <h1 id="encabezado" >Lista de usuarios</h1>
+    <a href="{% url 'usuarios:nuevo' %}">Nuevo</a>
+    <hr>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Primer apellido</th>
+            <th>Segundo apellido</th>
+            <th>Usuario</th>
+        </thead>
+        <tbody>
+
+            {% for usuario in object_list %}
+               <tr>
+                   <td>{{usuario.id}}</td>
+                   <td>{{usuario.first_name}}</td>
+                   <td>{{usuario.last_name}}</td>
+                   {% if usuario.segundo_apellido != None %}
+                        <td>{{usuario.segundo_apellido}}</td>
+                    {% else %}    
+                        <td>No capturado</td>
+                    {% endif %}
+                   <td>{{usuario.username}}</td>
+               </tr> 
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+</body>
+</html>
